@@ -93,6 +93,9 @@
     .project-meta { min-width: 0; }
     .project-number { font: 400 11px DM Mono, monospace; color: var(--muted); margin-bottom: 12px; }
     h3 { margin: 0; font-size: clamp(26px, 3vw, 38px); line-height: 1.1; letter-spacing: -.035em; }
+    .project-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .progress-badge { display: inline-flex; align-items: center; gap: 7px; padding: 5px 9px; border: 1px solid var(--accent); color: var(--accent); font: 500 10px DM Mono, monospace; white-space: nowrap; }
+    .progress-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
     .project-copy { color: var(--muted); margin: 22px 0; }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { border: 1px solid var(--line); padding: 5px 9px; font: 400 11px DM Mono, monospace; color: var(--muted); }
@@ -218,7 +221,7 @@
           <article class="project">
             <div class="project-meta">
               <div class="project-number">PROJECT 01 · MOBILE APP</div>
-              <h3>Schedule Planner</h3>
+              <div class="project-title-row"><h3>Schedule Planner</h3><span class="progress-badge">In progress</span></div>
               <div class="build-line">turning a busy week into a clear plan</div>
               <p class="project-copy">A mobile schedule planner centered on a practical everyday problem. The work is helping me improve component structure, state handling, and the way I organize information for a small screen.</p>
               <div class="tags" aria-label="Project technologies"><span class="tag">JavaScript</span><span class="tag">React Native</span><span class="tag">Expo</span></div>
@@ -237,7 +240,7 @@
           <article class="project">
             <div class="project-meta">
               <div class="project-number">PROJECT 02 · DATA PROJECT</div>
-              <h3>Database Query Lab</h3>
+              <div class="project-title-row"><h3>Database Query Lab</h3><span class="progress-badge">In progress</span></div>
               <div class="build-line">learning to ask better questions of data</div>
               <p class="project-copy">A hands-on SQL practice environment using PostgreSQL and the DVD Rental dataset. I use it to write, test, and improve queries while learning how relational data fits together.</p>
               <div class="tags" aria-label="Project technologies"><span class="tag">PostgreSQL</span><span class="tag">SQL</span><span class="tag">pgAdmin</span></div>
@@ -261,7 +264,7 @@
           <article class="project">
             <div class="project-meta">
               <div class="project-number">PROJECT 03 · MOBILE APP</div>
-              <h3>Quiz App</h3>
+              <div class="project-title-row"><h3>Quiz App</h3><span class="progress-badge">In progress</span></div>
               <div class="build-line">practicing clear, reusable UI flows</div>
               <p class="project-copy">A focused quiz experience for strengthening my React Native fundamentals. I’m working through screens, reusable components, score state, and clear feedback for each answer.</p>
               <div class="tags" aria-label="Project technologies"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">UI State</span></div>
