@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#101613" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Charles — Student Developer</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f4ee;
+      --surface: #ffffff;
+      --surface-2: #e9eae2;
+      --text: #141814;
+      --muted: #545b55;
+      --line: #c9ccc2;
+      --accent: #246b3b;
+      --accent-ink: #f7fff3;
+      --signal: #c9f65b;
+      --nav: rgba(244,244,238,.9);
+      --shadow: 0 18px 50px rgba(31,43,34,.10);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1310;
+        --surface: #151c17;
+        --surface-2: #1c251f;
+        --text: #f2f5eb;
+        --muted: #abb5ac;
+        --line: #354039;
+        --accent: #bde759;
+        --accent-ink: #10150f;
+        --signal: #c9f65b;
+        --nav: rgba(14,19,16,.9);
+        --shadow: 0 18px 55px rgba(0,0,0,.35);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Manrope, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--text); color: var(--bg); padding: 10px 14px; }
+    .skip:focus { top: 12px; }
+    .top {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px); background: var(--nav);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { max-width: 1120px; margin: auto; min-height: 64px; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .status { font: 500 12px DM Mono, monospace; display: flex; align-items: center; gap: 9px; color: var(--muted); }
+    .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 18%, transparent); }
+    .nav nav { display: flex; gap: 24px; }
+    .nav nav a { font: 500 13px DM Mono, monospace; text-decoration: none; color: var(--muted); }
+    .nav nav a:hover, .nav nav a:focus-visible { color: var(--text); }
+    main { overflow: hidden; }
+    .hero { max-width: 1120px; min-height: 440px; margin: auto; padding: 66px 28px 58px; display: grid; grid-template-columns: 1.18fr .82fr; align-items: center; gap: 72px; }
+    .eyebrow { margin: 0 0 18px; font: 500 13px DM Mono, monospace; color: var(--accent); }
+    h1 { margin: 0; max-width: 740px; font-size: clamp(42px, 5.5vw, 68px); line-height: 1.02; letter-spacing: -.055em; font-weight: 800; }
+    h1 span { display: block; color: var(--muted); }
+    .intro { max-width: 650px; margin: 24px 0 0; font-size: clamp(16px, 1.6vw, 19px); color: var(--muted); }
+    .intro strong { color: var(--text); font-weight: 650; }
+    .hero-links { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; font: 600 14px Manrope, sans-serif; box-shadow: 3px 3px 0 var(--line); }
+    .btn.primary { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); box-shadow: 3px 3px 0 color-mix(in srgb, var(--accent) 50%, var(--text)); }
+    .btn:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--line); }
+    .btn.primary:hover { box-shadow: 5px 5px 0 color-mix(in srgb, var(--accent) 50%, var(--text)); }
+    .sketch { position: relative; min-height: 350px; }
+    .code-card { position: absolute; inset: 24px 10px 24px 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); transform: rotate(2.5deg); padding: 22px; }
+    .code-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid var(--line); font: 400 11px DM Mono, monospace; color: var(--muted); }
+    .code-top .dots { letter-spacing: 3px; color: var(--accent); }
+    pre { margin: 25px 0 0; white-space: pre-wrap; color: var(--muted); font: 400 13px/1.85 DM Mono, monospace; }
+    pre .k { color: var(--accent); font-weight: 500; }
+    pre .v { color: var(--text); }
+    .section { border-top: 1px solid var(--line); }
+    .wrap { max-width: 1120px; margin: auto; padding: 86px 28px; }
+    .section-head { display: grid; grid-template-columns: 180px 1fr; gap: 40px; margin-bottom: 42px; }
+    .index { font: 500 12px DM Mono, monospace; color: var(--accent); padding-top: 9px; }
+    h2 { margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.08; letter-spacing: -.045em; }
+    .projects { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .project { background: var(--surface); padding: 36px; display: grid; grid-template-columns: .82fr 1.18fr; gap: 46px; align-items: center; }
+    .project-meta { min-width: 0; }
+    .project-number { font: 400 11px DM Mono, monospace; color: var(--muted); margin-bottom: 12px; }
+    h3 { margin: 0; font-size: clamp(26px, 3vw, 38px); line-height: 1.1; letter-spacing: -.035em; }
+    .project-copy { color: var(--muted); margin: 22px 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { border: 1px solid var(--line); padding: 5px 9px; font: 400 11px DM Mono, monospace; color: var(--muted); }
+    .build-line { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; font: 500 12px DM Mono, monospace; color: var(--accent); }
+    .build-line::before { content: ''; width: 22px; height: 1px; background: currentColor; }
+    .project-preview { min-width: 0; margin: 0; padding: 14px; background: var(--surface-2); border: 1px solid var(--line); }
+    .preview-frame { min-height: 250px; background: var(--surface); border: 1px solid var(--line); box-shadow: 7px 7px 0 color-mix(in srgb, var(--line) 70%, transparent); overflow: hidden; }
+    .preview-bar { height: 34px; padding: 0 13px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); font: 400 9px DM Mono, monospace; color: var(--muted); }
+    .preview-dots { letter-spacing: 2px; color: var(--accent); }
+    .project-preview figcaption { margin-top: 11px; font: 400 10px DM Mono, monospace; color: var(--muted); }
+    .schedule-ui { display: grid; grid-template-columns: 78px 1fr; min-height: 216px; }
+    .schedule-days { padding: 14px 10px; background: var(--text); color: var(--bg); }
+    .schedule-days b { display: block; margin-bottom: 14px; font: 500 10px DM Mono, monospace; color: var(--signal); }
+    .schedule-days span { display: block; padding: 8px 0; border-top: 1px solid color-mix(in srgb, var(--bg) 22%, transparent); font: 400 9px DM Mono, monospace; }
+    .schedule-list { padding: 16px; }
+    .schedule-list h4, .quiz-ui h4 { margin: 0 0 12px; font-size: 15px; }
+    .schedule-item { display: grid; grid-template-columns: 42px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+    .schedule-item time { font: 500 9px DM Mono, monospace; color: var(--accent); }
+    .schedule-item span { font-size: 11px; font-weight: 650; }
+    .query-ui { min-height: 216px; display: grid; grid-template-rows: 1fr auto; }
+    .query-code { margin: 0; padding: 18px; background: var(--text); color: var(--bg); font: 400 10px/1.75 DM Mono, monospace; white-space: pre-wrap; }
+    .query-code .sql { color: var(--signal); }
+    .query-result { padding: 13px 18px 15px; }
+    .query-result div { display: grid; grid-template-columns: 1fr .7fr; gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); font: 400 9px DM Mono, monospace; color: var(--muted); }
+    .query-result div:first-child { color: var(--text); font-weight: 500; }
+    .quiz-ui { min-height: 216px; padding: 18px; }
+    .quiz-progress { height: 4px; background: var(--surface-2); margin-bottom: 18px; }
+    .quiz-progress i { display: block; width: 40%; height: 100%; background: var(--accent); }
+    .quiz-kicker { margin: 0 0 8px; font: 500 9px DM Mono, monospace; color: var(--accent); }
+    .quiz-option { display: flex; align-items: center; gap: 10px; padding: 9px 11px; margin-top: 7px; border: 1px solid var(--line); font-size: 10px; }
+    .quiz-option i { width: 17px; height: 17px; display: grid; place-items: center; border: 1px solid var(--line); font: 500 8px DM Mono, monospace; font-style: normal; color: var(--muted); }
+    .learning-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .learning-copy, .stack { background: var(--surface); padding: 38px; }
+    .learning-copy p { font-size: 21px; margin: 0; color: var(--muted); }
+    .learning-copy strong { color: var(--text); }
+    .stack h3 { font-size: 17px; margin-bottom: 22px; }
+    .stack ul { list-style: none; padding: 0; margin: 0; }
+    .stack li { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-top: 1px solid var(--line); font: 400 12px DM Mono, monospace; }
+    .stack li span:last-child { color: var(--muted); text-align: right; }
+    .now { background: var(--text); color: var(--bg); }
+    .now .wrap { padding-top: 70px; padding-bottom: 70px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; }
+    .now .eyebrow { color: var(--signal); }
+    .now h2 { max-width: 760px; }
+    .now p { margin: 18px 0 0; color: color-mix(in srgb, var(--bg) 72%, transparent); max-width: 650px; }
+    .arrow { width: 84px; height: 84px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--bg) 34%, transparent); display: grid; place-items: center; color: var(--signal); font-size: 34px; text-decoration: none; }
+    footer { max-width: 1120px; margin: auto; padding: 28px; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font: 400 11px DM Mono, monospace; }
+    @media (max-width: 760px) {
+      .nav { padding: 0 18px; }
+      .nav nav { gap: 14px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; padding: 38px 20px 42px; min-height: 0; }
+      .eyebrow { margin-bottom: 14px; font-size: 11px; }
+      h1 { font-size: clamp(36px, 10.5vw, 46px); line-height: 1.03; }
+      .intro { margin-top: 20px; font-size: 16px; }
+      .hero-links { margin-top: 24px; }
+      .sketch { min-height: 320px; max-width: 440px; }
+      .code-card { inset: 10px 8px 25px 0; }
+      .wrap { padding: 62px 20px; }
+      .section-head { grid-template-columns: 1fr; gap: 8px; }
+      .project { grid-template-columns: 1fr; gap: 26px; padding: 28px 24px; }
+      .project-preview { padding: 10px; }
+      .preview-frame { min-height: 225px; }
+      .schedule-ui, .query-ui, .quiz-ui { min-height: 191px; }
+      .learning-grid { grid-template-columns: 1fr; }
+      .learning-copy, .stack { padding: 28px 24px; }
+      .now .wrap { grid-template-columns: 1fr; align-items: start; }
+      .arrow { width: 62px; height: 62px; }
+      footer { padding: 24px 20px; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#projects">Skip to projects</a>
+  <header class="top">
+    <div class="nav">
+      <div class="status"><i aria-hidden="true"></i> seeking internships</div>
+      <nav aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#now">Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div>
+        <p class="eyebrow">Charles / CS Student / Seeking Internships</p>
+        <h1>Building practical software. <span>Strengthening the fundamentals.</span></h1>
+        <p class="intro">I'm a University of Minnesota computer science student working across <strong>JavaScript, React Native, PostgreSQL, and core CS coursework.</strong> I learn by turning ideas into working projects, testing them, and improving what breaks.</p>
+        <div class="hero-links">
+          <a class="btn primary" href="#projects">View projects <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="#skills">Skills &amp; approach</a>
+        </div>
+      </div>
+      <div class="sketch" aria-label="Code note about Charles">
+        <div class="code-card">
+          <div class="code-top"><span>charles.js</span><span class="dots">● ● ●</span></div>
+          <pre><span class="k">const</span> developer = {
+  stage: <span class="v">"early, not idle"</span>,
+  approach: <span class="v">"learn by building"</span>,
+  tools: [
+    <span class="v">"JavaScript"</span>,
+    <span class="v">"React Native"</span>,
+    <span class="v">"PostgreSQL"</span>
+  ],
+  next: <span class="v">"keep shipping"</span>
+};</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="index">01 / projects</div>
+          <h2>What I’m building<br>and learning from.</h2>
+        </div>
+        <div class="projects">
+          <article class="project">
+            <div class="project-meta">
+              <div class="project-number">PROJECT 01 · MOBILE APP</div>
+              <h3>Schedule Planner</h3>
+              <div class="build-line">turning a busy week into a clear plan</div>
+              <p class="project-copy">A mobile schedule planner centered on a practical everyday problem. The work is helping me improve component structure, state handling, and the way I organize information for a small screen.</p>
+              <div class="tags" aria-label="Project technologies"><span class="tag">JavaScript</span><span class="tag">React Native</span><span class="tag">Expo</span></div>
+            </div>
+            <figure class="project-preview">
+              <div class="preview-frame">
+                <div class="preview-bar"><span>WEEK VIEW</span><span class="preview-dots">● ● ●</span></div>
+                <div class="schedule-ui">
+                  <div class="schedule-days"><b>MON 05</b><span>Tue 06</span><span>Wed 07</span><span>Thu 08</span><span>Fri 09</span></div>
+                  <div class="schedule-list"><h4>Today</h4><div class="schedule-item"><time>11:15</time><span>Linear Algebra</span></div><div class="schedule-item"><time>1:25</time><span>Programming Principles</span></div><div class="schedule-item"><time>6:00</time><span>Workout</span></div></div>
+                </div>
+              </div>
+              <figcaption>Schedule interface · React Native project</figcaption>
+            </figure>
+          </article>
+          <article class="project">
+            <div class="project-meta">
+              <div class="project-number">PROJECT 02 · DATA PROJECT</div>
+              <h3>Database Query Lab</h3>
+              <div class="build-line">learning to ask better questions of data</div>
+              <p class="project-copy">A hands-on SQL practice environment using PostgreSQL and the DVD Rental dataset. I use it to write, test, and improve queries while learning how relational data fits together.</p>
+              <div class="tags" aria-label="Project technologies"><span class="tag">PostgreSQL</span><span class="tag">SQL</span><span class="tag">pgAdmin</span></div>
+            </div>
+            <figure class="project-preview">
+              <div class="preview-frame">
+                <div class="preview-bar"><span>QUERY_07.SQL</span><span class="preview-dots">● ● ●</span></div>
+                <div class="query-ui">
+                  <pre class="query-code"><span class="sql">SELECT</span> category.name,
+       <span class="sql">COUNT</span>(film.film_id) <span class="sql">AS</span> films
+<span class="sql">FROM</span> category
+<span class="sql">JOIN</span> film_category
+  <span class="sql">ON</span> category.category_id = film_category.category_id
+<span class="sql">GROUP BY</span> category.name;</pre>
+                  <div class="query-result"><div><span>category</span><span>films</span></div><div><span>practice result</span><span>—</span></div></div>
+                </div>
+              </div>
+              <figcaption>Query practice · PostgreSQL</figcaption>
+            </figure>
+          </article>
+          <article class="project">
+            <div class="project-meta">
+              <div class="project-number">PROJECT 03 · MOBILE APP</div>
+              <h3>Quiz App</h3>
+              <div class="build-line">practicing clear, reusable UI flows</div>
+              <p class="project-copy">A focused quiz experience for strengthening my React Native fundamentals. I’m working through screens, reusable components, score state, and clear feedback for each answer.</p>
+              <div class="tags" aria-label="Project technologies"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">UI State</span></div>
+            </div>
+            <figure class="project-preview">
+              <div class="preview-frame">
+                <div class="preview-bar"><span>QUESTION FLOW</span><span>02 / 05</span></div>
+                <div class="quiz-ui">
+                  <div class="quiz-progress" aria-hidden="true"><i></i></div>
+                  <p class="quiz-kicker">JAVASCRIPT FUNDAMENTALS</p>
+                  <h4>Which method creates a new array?</h4>
+                  <div class="quiz-option"><i>A</i><span>forEach()</span></div>
+                  <div class="quiz-option"><i>B</i><span>map()</span></div>
+                  <div class="quiz-option"><i>C</i><span>push()</span></div>
+                </div>
+              </div>
+              <figcaption>Question flow · React Native project</figcaption>
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="index">02 / how I work</div>
+          <h2>Curious, practical,<br>and still improving.</h2>
+        </div>
+        <div class="learning-grid">
+          <div class="learning-copy">
+            <p>I don't pretend to know everything. I <strong>break problems down, test what I build, ask good questions,</strong> and keep going when the first version doesn't work.</p>
+          </div>
+          <div class="stack">
+            <h3>Current toolbox</h3>
+            <ul>
+              <li><span>JavaScript</span><span>building with</span></li>
+              <li><span>React Native + Expo</span><span>learning</span></li>
+              <li><span>Python</span><span>foundations</span></li>
+              <li><span>OCaml</span><span>coursework</span></li>
+              <li><span>PostgreSQL</span><span>practicing</span></li>
+              <li><span>Git + GitHub</span><span>daily workflow</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="now" id="now">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">03 / right now</p>
+          <h2>Learning the fundamentals—and making them visible.</h2>
+          <p>My current focus is finishing stronger versions of the projects above—and learning to explain the problem I chose, what broke, what I learned, and what I would improve next.</p>
+        </div>
+        <a class="arrow" href="#about" aria-label="Back to top">↑</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Charles · Computer Science Student</span>
+  </footer>
+</body>
+</html>
